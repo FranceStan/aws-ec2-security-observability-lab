@@ -4,7 +4,7 @@
 Mettre en place une infrastructure sécurisée avec une instance EC2, supervisée par CloudWatch, audité avec CloudTrail, et avec des alertes via SNS. Ce lab fait partie de la préparation à la certification AWS Solutions Architect Associate (SAA) tout en respectant les limites du Free Tier.
 
 ## Architecture du système
-![](img/architecture.PNG)
+![](img/architecture.png)
 
 ## Services AWS Utilisés 🧩
 - **EC2** : Instance hébergeant une application
