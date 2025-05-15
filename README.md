@@ -1,7 +1,10 @@
-# 🛡️ Projet AWS : Sécurisation et Surveillance d’une Application Web sur EC2
+# 🛡️ Projet AWS : Mise en place d’un système d’alerte CPU avec AWS EC2, S3, CloudWatch, CloudTrail et SNS 
 
 ## Objectif 🎯
 Mettre en place une infrastructure sécurisée avec une instance EC2, supervisée par CloudWatch, audité avec CloudTrail, et avec des alertes via SNS. Ce lab fait partie de la préparation à la certification AWS Solutions Architect Associate (SAA) tout en respectant les limites du Free Tier.
+
+## Architecture du système
+![](img/architecture.PNG)
 
 ## Services AWS Utilisés 🧩
 - **EC2** : Instance hébergeant une application
@@ -12,12 +15,12 @@ Mettre en place une infrastructure sécurisée avec une instance EC2, supervisé
 - **Security Groups** : Contrôle des accès réseau à l’instance EC2 
 
 ## Étapes 1 Création de l’instance EC2 🛠️
-1.Amazon Linux 2
-2.Type : t2.micro (Free Tier)
-3.Groupe de sécurité :
+1. Amazon Linux 2
+2. Type : t2.micro (Free Tier)
+3. Groupe de sécurité :
    * Port 22 : autoriser uniquement ton IP
    * Port 80 : autoriser tout le monde pour accès HTTP
-4.Dans Détails avancés > Données utilisateurs colle le script ci-dessus pour l’installation et configuration de l’agent CloudWatch, puis clique sur Lancer l’instance.
+4. Dans Détails avancés > Données utilisateurs colle le script ci-dessus pour l’installation et configuration de l’agent CloudWatch, puis clique sur Lancer l’instance.
 
 ```
 #!/bin/bash
@@ -94,9 +97,9 @@ EOF
 
 
 ## Étapes 2 Créer et attacher un rôle IAM pour EC2 avec les permissions CloudWatch🛠️
-1.Nom : EC2CloudWatchRole
-2.Politique attachée : CloudWatchAgentServerPolicy
-3.Attacher le rôle EC2CloudWatchRole à ton instance EC2
+1. Nom : EC2CloudWatchRole
+2. Politique attachée : CloudWatchAgentServerPolicy
+3. Attacher le rôle EC2CloudWatchRole à ton instance EC2
 
 ![](img/role/create-role1.PNG)
 ![](img/role/create-role2.PNG)
@@ -111,12 +114,12 @@ EOF
 
 
 ## Étapes 3 Créer un journal CloudTrail avec stockage dans un bucket S3
-1.Nom du journal : MySecurityTrail
-2.Activer CloudWatch Logs 
-3.Nom du nouveau rôle IAM : RoleCloudTrailForLogsCloudWatch
-4.Activité d'API : Lecture et écriture 
-5.Vérifier que les journaux sont bien collectés et stockés dans le bucket S3
-6.Vérifier que le groupe de journaux a été créer 
+1. Nom du journal : MySecurityTrail
+2. Activer CloudWatch Logs
+3. Nom du nouveau rôle IAM : RoleCloudTrailForLogsCloudWatch
+4. Activité d'API : Lecture et écriture.
+5. Vérifier que les journaux sont bien collectés et stockés dans le bucket S3
+6. Vérifier que le groupe de journaux a été créer 
 
 ![](img/cloudtrail/create-cloudtrail1.PNG)
 ![](img/cloudtrail/create-cloudtrail2.PNG)
