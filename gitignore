@@ -1,0 +1,19 @@
+# Logs
+*.log
+
+# Systèmes
+.DS_Store
+Thumbs.db
+
+# AWS config files
+*.pem
+*.env
+
+# Backup ou fichiers temporaires
+*.bak
+*.tmp
+
+# Fichiers système
+.idea/
+.vscode/
+.env
